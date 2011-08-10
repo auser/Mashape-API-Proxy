@@ -22,11 +22,11 @@
  *
  */
 
-var BASE_API_PATH = "/mashape-api";
+var BASE_API_PATH = "";
 
 exports.paths = {
 	MASHAPE_PLUGIN_PATH : "/plugins/mashape-plugin.js",
-	API_MASHAPE : "localhost",
+	API_MASHAPE : "api.mashape.com",
 	API_PORT: 8080,
 	API_REQUESTINFOBYSERVERKEY: BASE_API_PATH + "/requestInfoByServerKey",
 	API_REQUESTINFOBYADDRESS: BASE_API_PATH + "/requestInfoByAddress",
