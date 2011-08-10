@@ -122,22 +122,22 @@ exports.cleanUpOldActions = function() {
 						var timeDifference = new Date().getTime() - action.creationDate;
 						switch(mashapeType) {
 							case constants.timeUnit.SECOND:
-								if(timeDifference > 1000) {
+								if(timeDifference > constants.timeUnit.SECOND) {
 									cache.getCache().deleteAction(action);
 								}
 								break;
 							case constants.timeUnit.HOUR:
-								if(timeDifference > 3600000) {
+								if(timeDifference > constants.timeUnit.HOUR) {
 									cache.getCache().deleteAction(action);
 								}
 								break;
 							case constants.timeUnit.DAY:
-								if(timeDifference > 86400000) {
+								if(timeDifference > constants.timeUnit.DAY) {
 									cache.getCache().deleteAction(action);
 								}
 								break;
 							case constants.timeUnit.MONTH:
-								if(timeDifference > 2592000000) {
+								if(timeDifference > constants.timeUnit.MONTH) {
 									cache.getCache().deleteAction(action);
 								}
 								break;

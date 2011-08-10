@@ -22,11 +22,11 @@
  *
  */
 
-var BASE_API_PATH = "";
+var BASE_API_PATH = "/mashape-api";
 
 exports.paths = {
 	MASHAPE_PLUGIN_PATH : "/plugins/mashape-plugin.js",
-	API_MASHAPE : "api.mashape.com",
+	API_MASHAPE : "localhost",
 	API_PORT: 8080,
 	API_REQUESTINFOBYSERVERKEY: BASE_API_PATH + "/requestInfoByServerKey",
 	API_REQUESTINFOBYADDRESS: BASE_API_PATH + "/requestInfoByAddress",
@@ -41,7 +41,7 @@ exports.proxyMode = {
 
 exports.timeUnit = {
 	SECOND : 1000,
-	HOUR : 60000,
-	DAY : 1440000,
-	MONTH : 43200000
+	HOUR : 3600000,
+	DAY : 86400000,
+	MONTH : 2592000000
 }
