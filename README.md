@@ -7,18 +7,19 @@ Mashape API Proxy Version 1.2
 
 Notes
 -----
-The API Proxy is open source and intended to be downloaded on your servers (on premise). We're currently testing the private version 1.2 with a small set of API providers. This new version dramatically improves the performance and the security of the proxy, while reducing consistently any latency.
-We'll push it on GitHub as soon as has been tested properly. We recommend to wait for version 1.2 and skip version 1.1.
+The API Proxy is open source and intended to work with the new version of Mashape (www.mashape.com), not deployed yet.
 
 Requirements
 ============
 The latest version of node.js installed (compiled with SSL support).
 
+To support SSL, place these two files in the installation directory: `mashape-proxy-cert.pem` and `mashape-proxy-key.pem`
+
 Usage
 -----
 Run the following command in a shell:
 
-    node mashape-proxy.js --serverKey=YOUR_SERVER_KEY --forwardTo=FINAL_BASE_URL --port=PROXY_PORT
+    node mashape-proxy.js --serverKey=YOUR_SERVER_KEY --port=PROXY_PORT --ssl --sslPort=SSL_PORT
 	
 Copyright
 ---------
