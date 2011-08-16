@@ -13,7 +13,7 @@ Requirements
 ============
 The latest version of node.js installed (compiled with SSL support).
 
-To support SSL, place these two files in the installation directory: `mashape-proxy-cert.pem` and `mashape-proxy-key.pem`
+To enable SSL support, place these two files in the installation directory: `mashape-proxy-cert.pem` and `mashape-proxy-key.pem` and use the `--ssl` and `--sslPort` arguments.
 
 Usage
 -----
