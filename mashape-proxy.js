@@ -34,12 +34,19 @@ var mashape_logreport = require('./mashape/mashape_logreport');
 var mashape_errors = require('./mashape/mashape_errors');
 var mashape_authorization = require('./mashape/mashape_authorization');
 var string_utils = require('./utils/string_utils');
-
+var https = require('https');
+var fs = require('fs');
+	
 log.info("Starting Mashape Proxy. Please wait...");
 
 var count = 0;
 
+var ssl_key = null;
+var ssl_cert = null;
+
 proxy_configuration.loadConfiguration(function(configuration) {
+
+	loadSSL(configuration);
 
 	setInterval(mashape_usagereport.usageReport, 6000);
 	setInterval(mashape_logreport.logReport, 15000);
@@ -52,21 +59,29 @@ proxy_configuration.loadConfiguration(function(configuration) {
 	log.info("Mashape Proxy started on port " + configuration.port + "\n");
 	
  	if (configuration.ssl) {
-		var https = require('https');
-		var fs = fs = require('fs');
-		
 		var options = {
-		  key: fs.readFileSync('mashape-proxy-key.pem'),
-		  cert: fs.readFileSync('mashape-proxy-cert.pem')
+		  key: ssl_key,
+		  cert: ssl_cert
 		};
 		
 		https.createServer(options, function (request, response) {
 			handleRequest(request, response, configuration);
 		}).listen(configuration.sslPort);
-		log.info("SSL Support started on port " + configuration.sslPort + "\n");
+		log.info("SSL started on port " + configuration.sslPort + "\n");
 	}
 	
 });
+
+function loadSSL(configuration) {
+	if (configuration.ssl) {
+		if (!ssl_key) {
+			ssl_key = fs.readFileSync('mashape-proxy-key.pem');
+		}
+		if (!ssl_cert) {
+			ssl_cert = fs.readFileSync('mashape-proxy-cert.pem');
+		}
+	}
+}
 
 function handleRequest(request, response, configuration) {
 	var start = new Date().getTime();
