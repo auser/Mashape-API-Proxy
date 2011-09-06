@@ -43,6 +43,7 @@ var count = 0;
 
 var ssl_key = null;
 var ssl_cert = null;
+var ssl_intermediate = null;
 
 proxy_configuration.loadConfiguration(function(configuration) {
 
@@ -61,7 +62,8 @@ proxy_configuration.loadConfiguration(function(configuration) {
  	if (configuration.ssl) {
 		var options = {
 		  key: ssl_key,
-		  cert: ssl_cert
+		  cert: ssl_cert,
+		  ca: ssl_intermediate
 		};
 		
 		https.createServer(options, function (request, response) {
@@ -79,6 +81,13 @@ function loadSSL(configuration) {
 		}
 		if (!ssl_cert) {
 			ssl_cert = fs.readFileSync('mashape-proxy-cert.pem');
+		}
+		try {
+			if (!ssl_intermediate) {
+				ssl_intermediate = fs.readFileSync('mashape-proxy-intermediate.pem');
+			}
+		} catch (e) {
+			log.info("Can't find intermediate SSL Certificate file");
 		}
 	}
 }

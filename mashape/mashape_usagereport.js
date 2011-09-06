@@ -149,7 +149,7 @@ exports.cleanUpOldActions = function() {
 		}
 		
 		// If the user has no limits set, then delete the action
-	 //	cache.getCache().deleteAction(action);
+	    cache.getCache().deleteAction(action);
 		
 		// TODO: If the request is global, support delete of global requests in cache (global request have no publicKey)
 		

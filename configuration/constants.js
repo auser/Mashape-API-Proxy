@@ -22,7 +22,7 @@
  *
  */
 
-var BASE_API_PATH = "/mashape-api";
+var BASE_API_PATH = "/mashape-services";
 
 exports.paths = {
 	MASHAPE_PLUGIN_PATH : "/plugins/mashape-plugin.js",

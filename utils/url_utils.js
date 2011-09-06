@@ -32,16 +32,20 @@ exports.getUrlParts = function(urlParam) {
 		
 	var urlObject = url.parse(urlParam);
 	result.host = urlObject.hostname;
-	result.port = parseInt(urlObject.port);
-	if (isNaN(result.port)) {
-		result.port = 80;
-	}
 	result.path = (urlObject.pathname == "/") ? "" : urlObject.pathname;
 	if (urlObject.protocol == "http:" || urlObject.protocol == "https:") {
 		result.secure = (string_utils.startsWith(urlObject.protocol, "https")) ? true : false;
 	} else {
 		log.error("Only HTTP or HTTPS are supported");
 		throw new Error();
+	}
+	result.port = parseInt(urlObject.port);
+	if (isNaN(result.port)) {
+		if (result.secure) {
+			result.port = 443;
+		} else {
+			result.port = 80;
+		}
 	}
 		
 	return result;
